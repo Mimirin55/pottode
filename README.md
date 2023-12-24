@@ -83,6 +83,3 @@
 ### 画面遷移図
 Figma：
 https://www.figma.com/file/VJ2tZS5eOSDvjV90tFdm2D/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3-(Community)-(%E3%82%B3%E3%83%94%E3%83%BC)?type=design&node-id=0%3A1&mode=design&t=DJNGeYCW2pKHxoRb-1
-
-### ER図
-[![Image from Gyazo](https://i.gyazo.com/4730d4e5f619645908d652d33a8cdf2d.png)](https://gyazo.com/4730d4e5f619645908d652d33a8cdf2d)
