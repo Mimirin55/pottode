@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     delete '/users' => 'devise/registrations#destroy', as: :destroy_user_registration
   end
   resources :tasks
-  root "tasks#index"
+  root 'tasks#index'
 end
