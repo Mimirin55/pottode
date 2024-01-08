@@ -1,15 +1,67 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+header {
+  width: 100%;
+  background-color: #105175;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+}
+
+nav ul li {
+  list-style: none;
+  display: inline;
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+header .header-item {
+  margin-left: 30px;
+}
+
+footer {
+  width: 100%;
+  background-color: #105175;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+}
+
+.maintheme {
+  font-size: 40px;
+  font-family: cursive;
+  margin-right: 900px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  margin-right: 20px; 
+}
+
+body {
+  background-image: url(sunbeams-1547273_1280.jpg);
+  background-size: cover;
+  background-attachment: scroll;
+  color: #fff;
+  margin: 0;
+  vertical-align: middle
+}
+
+.body-item {
+  text-shadow: 1px 1px 2px rgb(7, 6, 65);
+  text-align: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.body-item h1 {
+  font-size: 90px;
+  font-family: cursive;
+}
