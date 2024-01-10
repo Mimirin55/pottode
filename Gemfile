@@ -14,6 +14,9 @@ gem "sprockets-rails"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
+gem 'devise'
+gem 'devise-i18n'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 
 # Use Redis adapter to run Action Cable in production
@@ -40,6 +43,8 @@ end
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'sqlite3', '~> 1.4'
+  gem 'pg'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 

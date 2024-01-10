@@ -20,4 +20,6 @@ production:
   database: pottode_production
   username: myapp
   password: <%= ENV["POTTODE_DATABASE_PASSWORD"] %>
-
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
