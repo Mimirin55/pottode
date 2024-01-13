@@ -32,10 +32,7 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "編集" %>
+      <%= f.submit "編集", class: 'btn btn-primary' %>
     </div>
   <% end %>
-    <div class="header-item">
-      <%= link_to 'このアカウントを削除する', destroy_user_registration_path, method: :delete, data: { confirm: "アカウントを削除してもよろしいですか？" } %>
-    </div>
 </div>

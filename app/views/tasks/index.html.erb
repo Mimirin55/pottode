@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+<% if user_signed_in? %>
+  <body>
+    <div class="body-item">
+      <% if @tasks.present? %>
+        <%= render 'tasks/task' %>
+      <% else %>
+        <div class="mb-3">タスクがありません</div>
+      <% end %>
+      <div class="new-task">
+        <%= link_to 'こちらからタスクを作りましょう！', new_task_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </body>
+<% else %>
   <body>
     <div class="body-item">
       <h1>Pottode</h1>
       <h2>達成感が出るアプリ</h2>
     </div>
   </body>
+<% end %>
 </html>
-<%= content_tag :div,
-                id: "resources-container",
-                data: {
-                    q: params,
-                    resources_path: tasks_path,
-                }.to_json do %>
-<% end %>
-
-<% content_for :javascript do %>
-  <%= javascript_tag 'App' %>
-<% end %>

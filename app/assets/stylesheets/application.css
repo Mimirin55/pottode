@@ -89,3 +89,48 @@ body {
   margin-bottom: 13px;
   box-sizing: border-box;
  }
+
+ .terms-of-service {
+  text-align: center;
+  margin-top: 100px;
+ }
+
+ .terms-of-service li {
+  list-style: none;
+ }
+
+ .service-list {
+  text-shadow: 1px 1px 2px rgb(7, 6, 65);
+ }
+
+ .one-task {
+  list-style: none;
+  text-align: center;
+ }
+
+.task-list {
+  margin-top: 30px;
+}
+
+ .new-task {
+  margin-top: 30px;
+  text-align: center;
+ }
+
+ .edit-delete {
+  display: flex;
+  justify-content: center;
+ }
+
+.task-container {
+  list-style: none;
+  display: block;
+}
+
+.task {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  display: inline-block;
+  vertical-align: top;
+}

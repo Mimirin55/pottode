@@ -20,6 +20,8 @@ gem 'devise-i18n'
 gem 'react-rails'
 gem 'shakapacker', '~> 7.2.1'
 
+gem 'high_voltage', '~> 3.1'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 
 # Use Redis adapter to run Action Cable in production

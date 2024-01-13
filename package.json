@@ -32,6 +32,7 @@
     "webpack-dev-server": "4"
   },
   "scripts": {
-    "start": "rails s & bin/webpack-dev-server"
+    "start": "rails server",
+    "build": "rails assets:precompile"
   }
 }
