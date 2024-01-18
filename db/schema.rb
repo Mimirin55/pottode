@@ -10,14 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_09_022125) do
-
+ActiveRecord::Schema[7.0].define(version: 2024_01_16_065831) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name", limit: 10, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "recurring_schedules", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.text "schedule", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_recurring_schedules_on_task_id"
+  end
+
+  create_table "taskcategories", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_taskcategories_on_category_id"
+    t.index ["task_id"], name: "index_taskcategories_on_task_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "title", limit: 30, null: false
+    t.text "description"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "recurrence"
   end
 
   create_table "users", force: :cascade do |t|
@@ -28,10 +56,13 @@ ActiveRecord::Schema.define(version: 2024_01_09_022125) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "recurring_schedules", "tasks"
+  add_foreign_key "taskcategories", "categories"
+  add_foreign_key "taskcategories", "tasks"
 end
