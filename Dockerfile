@@ -1,17 +1,38 @@
-FROM ruby:3.1.4
-ENV LANG C.UTF-8
-ENV TZ Asia/Tokyo
-RUN curl -sL https://deb.nodesource.com/setup_19.x | bash - \
-&& wget --quiet -O - /tmp/pubkey.gpg https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-&& apt-get update -qq \
-&& apt-get install -y build-essential libpq-dev nodejs yarn
-RUN mkdir /pottode
-WORKDIR /pottode
-RUN gem install bundler:2.3.17
-COPY Gemfile /pottode/Gemfile
-COPY Gemfile.lock /pottode/Gemfile.lock
-COPY yarn.lock /pottode/yarn.lock
+FROM node:14.17.6 as node
+FROM ruby:3.2.1
+COPY --from=node /opt/yarn-* /opt/yarn
+COPY --from=node /usr/local/bin/node /usr/local/bin/
+COPY --from=node /usr/local/lib/node_modules/ /usr/local/lib/node_modules/
+RUN ln -fs /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+  && ln -fs /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npx \
+  && ln -fs /opt/yarn/bin/yarn /usr/local/bin/yarn \
+  && ln -fs /opt/yarn/bin/yarnpkg /usr/local/bin/yarnpkg
+
+RUN apt-get update -qq && \
+  apt-get install -y build-essential \
+  libpq-dev \
+  postgresql-client \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /myapp
+WORKDIR /myapp
+
+COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
+
 RUN bundle install
+
+COPY package.json yarn.lock ./
 RUN yarn install
-COPY . /pottode
+
+COPY . /myapp
+
+# Add a script to be executed every time the container starts.
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
+
+# Start the main process.
+CMD ["rails", "server", "-b", "0.0.0.0"]
